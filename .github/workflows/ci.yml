@@ -21,7 +21,7 @@ jobs:
       JETSON_BUILD_DIR: /tmp/jetson-builder/build
       JETSON_NANO_BOARD: ${{ matrix.board }}
       JETSON_NANO_REVISION: ${{ matrix.revision }}
-    steps:
+    steps: # All these steps are run on the Linux environment of the runner.
       - uses: actions/checkout@v2 # Checks out the repository onto the runner, allows scripts or other actions from the repo to be run in the runner.
 
       - name: Set up QEMU
@@ -30,12 +30,12 @@ jobs:
       - name: Build docker image
         run: docker buildx build --platform linux/arm64 -t jetson-nano-image .
 
-      - name: Export rootfs
-        run: |
-          docker export $(docker create --name nano-rootfs --platform linux/arm64 jetson-nano-image) -o rootfs.tar
-          docker rm nano-rootfs
-          mkdir -p /tmp/jetson-builder/rootfs
-          sudo tar --same-owner -xf rootfs.tar -C /tmp/jetson-builder/rootfs
+      #- name: Export rootfs
+      #  run: |
+      #    docker export $(docker create --name nano-rootfs --platform linux/arm64 jetson-nano-image) -o rootfs.tar
+      #    docker rm nano-rootfs
+      #    mkdir -p /tmp/jetson-builder/rootfs
+      #    sudo tar --same-owner -xf rootfs.tar -C /tmp/jetson-builder/rootfs
 
       - name: Create jetson.img
         run: |
