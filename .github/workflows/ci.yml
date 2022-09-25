@@ -1,13 +1,13 @@
 name: CI
 
-on:
+on: # This workflow is activated from either push or pull request events.
   push:
     branches: [main, master]
-  pull_request:
+  pull_request: # When a contributor ask the maintainer fo a Git repository to review code to be merged.
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Configures the job to run on the latest version of a Ubuntu Linux runner.
 
     strategy:
       fail-fast: false
@@ -22,7 +22,7 @@ jobs:
       JETSON_NANO_BOARD: ${{ matrix.board }}
       JETSON_NANO_REVISION: ${{ matrix.revision }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 # Checks out the repository onto the runner, allows scripts or other actions from the repo to be run in the runner.
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
