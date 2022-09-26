@@ -38,19 +38,19 @@ RUN apt update
 RUN apt install -y bridge-utils
 
 # https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/updating_jetson_and_host.html
-RUN apt install -y -o Dpkg::Options::="--force-overwrite" \
-    nvidia-l4t-core \
-    nvidia-l4t-init \
-    nvidia-l4t-bootloader \
-    nvidia-l4t-camera \
-    nvidia-l4t-initrd \
-    nvidia-l4t-xusb-firmware \
-    nvidia-l4t-kernel \
-    nvidia-l4t-kernel-dtbs \
-    nvidia-l4t-kernel-headers \
-    nvidia-l4t-cuda \
-    jetson-gpio-common \
-    python3-jetson-gpio
+#RUN apt install -y -o Dpkg::Options::="--force-overwrite" \
+#    nvidia-l4t-core \
+#    nvidia-l4t-init \
+#    nvidia-l4t-bootloader \
+#    nvidia-l4t-camera \
+#    nvidia-l4t-initrd \
+#    nvidia-l4t-xusb-firmware \
+#    nvidia-l4t-kernel \
+#    nvidia-l4t-kernel-dtbs \
+#    nvidia-l4t-kernel-headers \
+#    nvidia-l4t-cuda \
+#    jetson-gpio-common \
+#    python3-jetson-gpio
 
 #RUN rm -rf /opt/nvidia/l4t-packages
 

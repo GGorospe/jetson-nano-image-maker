@@ -30,12 +30,12 @@ jobs:
       - name: Build docker image
         run: docker buildx build --platform linux/arm64 -t jetson-nano-image .
 
-      #- name: Export rootfs
-      #  run: |
-      #    docker export $(docker create --name nano-rootfs --platform linux/arm64 jetson-nano-image) -o rootfs.tar
-      #    docker rm nano-rootfs
-      #    mkdir -p /tmp/jetson-builder/rootfs
-      #    sudo tar --same-owner -xf rootfs.tar -C /tmp/jetson-builder/rootfs
+      - name: Export rootfs
+        run: |
+          docker export $(docker create --name nano-rootfs --platform linux/arm64 jetson-nano-image) -o rootfs.tar
+          docker rm nano-rootfs
+          mkdir -p /tmp/jetson-builder/rootfs
+          sudo tar --same-owner -xf rootfs.tar -C /tmp/jetson-builder/rootfs
 
       - name: Create jetson.img
         run: |
